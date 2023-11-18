@@ -19,8 +19,7 @@ job:
 secrets-scanning:
   stage: build
   script:
-    - docker pull hysnsec/detect-secrets
-    - docker run --rm -v $(pwd) :/tmp hysnsec/detect-secrets scan  /$(pwd)/tmp/detect-secrets.json
+    - docker run -v $(pwd):/src --rm hysnsec/detect-secrets --repo_path /src file:///src --json | tee detect-secrets.json
   artifacts:
     paths: [detect-secrets.json]
     when: always
