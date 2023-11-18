@@ -22,7 +22,7 @@ secrets-scanning:
     - docker pull hysnsec/detect-secrets
     - docker run --rm -v $(pwd):/tmp hysnsec/detect-secrets scan  /tmp/detect-secrets.json
   artifacts:
-    paths: [detect-secrets.json]
+    paths: [/tmp/detect-secrets.json]
     when: always
 
 
