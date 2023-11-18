@@ -18,7 +18,7 @@ job:
 
 secrets-scannning:
   stage: build
-    script:
+  script:
     - docker pull hysnsec/detect-secrets
     - docker run --rm -v $(pwd):/tmp hysnsec/detect-secrets prod-s3zfidv9 -oX /tmp/detect-secrets-output.xml
   artifacts:
