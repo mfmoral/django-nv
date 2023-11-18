@@ -16,7 +16,18 @@ job:
   script:
     - echo "I'm a job"
 
-os-hardening:
+secrets-scannning:
+  stage: build
+    script:
+    - docker pull hysnsec/detect-secrets
+    - docker run --rm -v $(pwd):/tmp hysnsec/detect-secrets prod-s3zfidv9 -oX /tmp/detect-secrets-output.xml
+  artifacts:
+    paths: [detect-secrets-output.xml]
+    when: always
+
+
+
+#os-hardening:
   stage: prod
   only:
     - main
@@ -30,11 +41,11 @@ os-hardening:
 
 
 # Dynamic Application Security Testing
-nmap:
-  stage: integration
-  script:
-    - docker pull hysnsec/nmap
-    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h devsecops-box-s3zfidv9 -o /tmp/nmap-out.xml
-  artifacts:
-    paths: [nmap_out.xml]
-    when: always
+#nmap:
+  #stage: integration
+  #script:
+   # - docker pull hysnsec/nmap
+    #- docker run --rm -v $(pwd):/tmp hysnsec/nmap -h devsecops-box-s3zfidv9 -o /tmp/nmap-out.xml
+  #artifacts:
+   # paths: [nmap_out.xml]
+    #when: always
