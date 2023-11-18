@@ -24,7 +24,7 @@ job:
    # paths: [detect-secrets.json]
     #when: always
 
-zap-baseline:
+zap:
   stage: integration
   before_script:
     - docker pull softwaresecurityproject/zap-stable:2.13.0
