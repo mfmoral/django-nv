@@ -18,7 +18,6 @@ job:
 
 os-hardening:
   stage: prod
-  image: https://github.com/dev-sec/ansible-collection-hardening.git
   only:
     - main
   script: 
