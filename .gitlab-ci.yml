@@ -68,5 +68,5 @@ nmap:
     - docker pull hysnsec/nmap
     - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h prod-s3zfidv9 -o /tmp/nmap-output.xml
   artifacts:
-    paths: [nmap-output.xml]
+    paths: [nmap_out.xml]
     when: always
