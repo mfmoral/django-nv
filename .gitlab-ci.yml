@@ -16,6 +16,10 @@ job:
   script:
     - echo "I'm a job"
 
+os-hardening:
+  stage: deploy
+  script: 
+    - echo "this is my attempt to harden"
 
 
 # Dynamic Application Security Testing
@@ -23,7 +27,7 @@ nmap:
   stage: integration
   script:
     - docker pull hysnsec/nmap
-    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h prod-s3zfidv9 -o /tmp/nmap-output.xml
+    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h prod-s3zfidv9 -o /tmp/nmap-out.xml
   artifacts:
-    paths: [nmap_output.xml]
+    paths: [nmap_out.xml]
     when: always
