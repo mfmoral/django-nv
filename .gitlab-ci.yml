@@ -65,8 +65,8 @@ sast:
 nmap:
   stage: integration
   script:
-    - docker pull hysnsec/nikto
-    - docker run --rm -v $(pwd):/tmp hysnsec/nikto -h prod-s3zfidv9 -o /tmp/nmap-output.xml
+    - docker pull hysnsec/nmap
+    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h prod-s3zfidv9 -o /tmp/nmap-output.xml
   artifacts:
-    paths: [nikto-output.xml]
+    paths: [nmap-output.xml]
     when: always
