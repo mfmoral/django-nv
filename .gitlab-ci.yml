@@ -20,22 +20,22 @@ secrets-scanning:
   stage: build
   script:
     - docker pull hysnsec/detect-secrets
-    - docker run --rm -v $(pwd):/tmp hysnsec/detect-secrets prod-s3zfidv9 --json /tmp/detect-secrets-output.json
+    - docker run --rm -v $(pwd):/tmp hysnsec/detect-secrets prod-s3zfidv9 --json /tmp/detect-secret.json
   artifacts:
-    paths: [detect-secrets-output.json]
+    paths: [detect-secret.json]
     when: always
 
 
 
 #os-hardening:
-  stage: prod
-  only:
-    - main
-  script: 
-    - echo "this is my attempt to harden"
-  allow_failure: true
-  artifacts:
-    paths: [os-hardening.json]
+  #stage: prod
+  #only:
+   # - main
+  #script: 
+   # - echo "this is my attempt to harden"
+  #allow_failure: true
+  #artifacts:
+  #  paths: [os-hardening.json]
 
   
 
