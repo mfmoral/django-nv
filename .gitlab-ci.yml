@@ -18,8 +18,16 @@ job:
 
 os-hardening:
   stage: prod
+  image: https://github.com/dev-sec/ansible-collection-hardening.git
+  only:
+    - main
   script: 
     - echo "this is my attempt to harden"
+  allow_failure: true
+  artifacts:
+    paths: [os-hardening.json]
+
+  
 
 
 # Dynamic Application Security Testing
@@ -27,7 +35,7 @@ nmap:
   stage: integration
   script:
     - docker pull hysnsec/nmap
-    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h prod-s3zfidv9 -o /tmp/nmap-out.xml
+    - docker run --rm -v $(pwd):/tmp hysnsec/nmap -h devsecops-box-s3zfidv9 -o /tmp/nmap-out.xml
   artifacts:
     paths: [nmap_out.xml]
     when: always
