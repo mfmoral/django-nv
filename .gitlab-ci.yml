@@ -17,7 +17,7 @@ job:
     - echo "I'm a job"
 
 os-hardening:
-  stage: deploy
+  stage: prod
   script: 
     - echo "this is my attempt to harden"
 
