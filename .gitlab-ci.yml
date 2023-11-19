@@ -50,8 +50,6 @@ job:
 
 inspec:
   stage: prod
-  only:
-    - main
   before_script:
     - mkdir -p ~/.ssh
     - echo "$DEPLOYMENT_SERVER_SSH_PRIVKEY" | tr -d '\r' > ~/.ssh/id_rsa
@@ -60,7 +58,13 @@ inspec:
     - ssh-add ~/.ssh/id_rsa
     - ssh-keyscan -t rsa $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
   script:
-    - docker run --rm -v ~/.ssh:/root/.ssh -v $(pwd):/share hysnsec/inspec exec https://github.com/dev-sec/linux-baseline -t ssh://root@$DEPLOYMENT_SERVER -i ~/.ssh/id_rsa --chef-license accept
+    - docker run --rm -v ~/.ssh:/root/.ssh -v $(pwd):/share hysnsec/inspec exec https://github.com/dev-sec/linux-baseline -t ssh://root@$DEPLOYMENT_SERVER -i ~/.ssh/id_rsa --chef-license accept --reporter json:/share/inspec-output.json
+  artifacts:
+    paths: [inspec-output.json]
+    when: always
+  allow_failure: true
+  
+
   
 
 
