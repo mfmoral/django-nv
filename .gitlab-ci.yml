@@ -65,7 +65,6 @@ inspec:
   allow_failure: true
   
 
-  
 
 
 # Dynamic Application Security Testing
